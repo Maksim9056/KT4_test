@@ -25,16 +25,25 @@ namespace KT4
         {
             try
             {
+                List<string> list = new List<string>();
                 WebDriverWait wait = new WebDriverWait(driver, TimeSpan.FromSeconds(10)); 
                 var element = wait.Until(SeleniumExtras.WaitHelpers.ExpectedConditions.ElementExists(By.XPath(Selector.click)));
                 element.Click();
                 Log log = new Log();
                 log.Parametr(Email_user, Password, wait,driver, FileName_default);
                 log.Log_user();
+                list.Add(log.screenshotPath);
                 User_buy_product user_Buy_Product = new User_buy_product();
-                user_Buy_Product.Parametr(Email_user, Password, wait, driver, Default_Filename_Add_product, Default_Filename_Add_product_pay);
+                user_Buy_Product.Parametr(Email_user, Password, wait, driver, Default_Filename_Add_product,Default_Filename_Add_product_pay);
                 user_Buy_Product.Add_product();
 
+                list.Add(user_Buy_Product.screenshotPath);
+                list.Add(user_Buy_Product.screenshotPath_pay);
+
+                Report report = new Report();
+
+                report.Parametr(wait, driver, list.ToArray());
+                report.REPORT();
             }
             catch (Exception ex)
             {

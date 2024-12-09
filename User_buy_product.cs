@@ -75,9 +75,9 @@ namespace KT4
 
                 button_pay.Click();
                  screenshot = ((ITakesScreenshot)_driver).GetScreenshot();
-                screenshotPath = Path.Combine(Directory.GetCurrentDirectory(), screenshotPath_pay);
-                screenshot.SaveAsFile(screenshotPath); // Используйте формат как строку
-                Console.WriteLine($"Скриншот сохранён: {screenshotPath}");
+                screenshotPath_pay = Path.Combine(Directory.GetCurrentDirectory(), screenshotPath_pay);
+                screenshot.SaveAsFile(screenshotPath_pay); // Используйте формат как строку
+                Console.WriteLine($"Скриншот сохранён: {screenshotPath_pay}");
 
                 Thread.Sleep(TimeSpan.FromSeconds(18)); // Жёсткое ожидание 1 минута
 
