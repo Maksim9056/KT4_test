@@ -55,6 +55,49 @@ namespace KT4
         }
 
         [Test]
+        public async Task Test_AddCatalogItem_negative()
+        {
+            try
+            {
+                var connectionString = "Server=localhost,1434;Database=Microsoft.eShopOnWeb.CatalogDb;User Id=sa;Password=@someThingComplicated1234;Encrypt=False;TrustServerCertificate=True;";
+
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    try
+                    {
+                        string squre_update = "insert into [dbo].[Catalog] ([Id],[Name],[Description],[Price],[PictureUri],[CatalogTypeId],[CatalogBrandId]) \r\n" +
+                             "VALUES ('14','Product Lemon', 'A sample catalog item', 10.1, 'http://catalogbaseurltobereplaced/images/products/5.png', 3, 5);\r\n";
+                        using (SqlCommand command = new SqlCommand(squre_update, connection))
+                        {
+                            int rowsAffected = command.ExecuteNonQuery();
+                            Console.WriteLine($"{rowsAffected} row(s) inserted.");
+                        }
+
+
+                    }
+                    catch (Exception EX)
+                    {
+                        Assert.Fail(EX.Source);
+
+                        Console.WriteLine($"Error: {EX.Message}");
+                    }
+                }
+
+            }
+
+            catch (Exception EX)
+            {
+                Assert.Fail( EX.Source);
+
+                Console.WriteLine($"Error: {EX.Message}");
+            }
+
+
+
+
+        }
+        [Test]
         public async Task Test_AddCatalogItem()
         {
             try
