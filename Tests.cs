@@ -3,7 +3,6 @@ using OpenQA.Selenium;
 using WebDriverManager.DriverConfigs.Impl;
 using WebDriverManager;
 using WebDriverManager.Helpers;
-
 namespace KT4
 {
     public class Tests
@@ -24,9 +23,9 @@ namespace KT4
                 // Автоматическая загрузка драйвера
                 //new DriverManager().SetUpDriver(new EdgeConfig());
                 EdgeOptions options = new EdgeOptions();
-                //options.AddArgument("--headless"); // Режим без интерфейса
-                //options.AddArgument("--no-sandbox");
-                //options.AddArgument("--disable-dev-shm-usage");
+                options.AddArgument("--headless"); // Режим без интерфейса
+                options.AddArgument("--no-sandbox");
+                options.AddArgument("--disable-dev-shm-usage");
                 driver = new EdgeDriver(options);
                 driver.Manage().Window.Maximize();
                 driver.Navigate().GoToUrl(CategoryUrl);
